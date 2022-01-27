@@ -1,9 +1,12 @@
-import { Facebook, Instagram, Pinterest, Twitter } from "@material-ui/icons";
+import { Facebook, Instagram, Mail, Phone, Pinterest, Room, Twitter } from "@material-ui/icons";
 import React from "react";
 import styled from "styled-components";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   display: flex;
+  ${mobile({flexDirection:"column"})}
+
 `;
 const Left = styled.div`
   flex: 1;
@@ -15,11 +18,15 @@ const Left = styled.div`
 const Center = styled.div`
   flex: 1;
   padding: 20px;
+  ${mobile({display:"none"})}
+
 `;
 
 const Right = styled.div`
   flex: 1;
   padding: 20px;
+  ${mobile({backgroundColor:"#eee"})}
+
 `;
 
 const Title=styled.h3`
@@ -61,6 +68,15 @@ display: flex;
 justify-content: center;
 align-items: center;
 margin-right: 20px;
+`
+
+const ContactItem=styled.div`
+margin-bottom: 20px;
+display: flex;
+align-items: center;
+`
+const Payment =styled.img`
+width: 50%;
 `
 
 const Footer = () => {
@@ -105,6 +121,19 @@ const Footer = () => {
       </Center>
       <Right>
           <Title>Contact</Title>
+          <ContactItem>
+            <Room style={{marginRight:"10px"}}/>
+          622 Dixie Path , South Tobinchester 98336
+          </ContactItem>
+          <ContactItem>
+            <Phone style={{marginRight:"10px"}}/>
+          +1 234 56 78
+          </ContactItem>
+          <ContactItem>
+            <Mail style={{marginRight:"10px"}}/>
+          contact@lama.dev
+          </ContactItem>
+          <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />          
       </Right>
     </Container>
   );
