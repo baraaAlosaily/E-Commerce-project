@@ -28,8 +28,12 @@ router.post("/login",async(req,res)=>{
     try {
         const user=await User.findOne({
             username: req.body.username});
+
+         
+        if(!user){
+          return res.status(401).json("Wrong credentails!")
+        }    
         
-        !user&&res.status(401).json("Wrong credentails!");
 
         const hashedPassword=CryptoJS.AES.decrypt(
             user.password,
@@ -47,7 +51,9 @@ router.post("/login",async(req,res)=>{
               {expiresIn:"3d"}
           )
 
-          OriPassword!==req.body.password && res.status(401).json("Wrong credentails!");
+          if(OriPassword!==req.body.password){
+            return res.status(401).json("Wrong credentails!")
+          }
 
           const {password, ...others}=user._doc;
           
